@@ -9,8 +9,7 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-# import django_heroku
-# import dj_database_url
+import dj_database_url
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -146,8 +145,10 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+DATABASES = {
+    "default": dj_database_url.config()
+}
 try:
     from .local_settings import *
 except ImportError:
     print('Local settings failed')
-# django_heroku.settings(locals())
