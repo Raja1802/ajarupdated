@@ -1,0 +1,1 @@
+web: gunicon ajarrun.wsgi --log-file
