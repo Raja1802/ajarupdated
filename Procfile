@@ -1,1 +1,1 @@
-web: gunicon ajarrun.wsgi --log-file
+web: gunicorn ajarrun.wsgi --log-file=-
