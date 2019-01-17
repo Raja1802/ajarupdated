@@ -84,16 +84,21 @@ WSGI_APPLICATION = 'ajar.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'epiz_23206143_ajar',
+#         'USER': 'epiz_23206143',
+#         'PASSWORD': '9440261782',
+#         'HOST': 'sql200.epizy.com',
+#         'PORT': '3306',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'epiz_23206143_ajar',
-        'USER': 'epiz_23206143',
-        'PASSWORD': '9440261782',
-        'HOST': 'sql200.epizy.com',
-        'PORT': '3306',
-    }
+    'default': dj_database_url.config()
 }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -133,7 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 STATIC_URL = '/static/'
